@@ -3,18 +3,18 @@
 #define echoPin 3
 
 //LED pins
-#define ledr 11
-#define ledg 10
+//These LEDs are used for indicating purpose only 
+#define ledr 11 //this indicates that pump is on
+#define ledg 10 //this indicates that the circuit is operational
 
-#define pump 8
+#define pump 8  //is used to pump out your sanitizer
 
-int range = 5;//range in inches
+int range = 5; //range in inches
 
 void setup() {
-  // initialize serial communication:
-  Serial.begin(9600);
+  Serial.begin(9600);   // initialize serial communication:
 
-  //initialize the sensor pins
+  //initialize the sensor pins of the ultrasonic sensor
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
@@ -22,9 +22,9 @@ void setup() {
   pinMode(ledr, OUTPUT);
   pinMode(ledg, OUTPUT);
 
-  pinMode(pump, OUTPUT);
+  pinMode(pump, OUTPUT);  //initialize pump
 
-  //set LEDs
+  //set LEDs and pump default value
   digitalWrite(ledg, HIGH);
   digitalWrite(ledr, LOW);  
   digitalWrite(pump, LOW);
@@ -54,6 +54,7 @@ void loop()
   Serial.print(cm);
   Serial.print("cm");
   Serial.println();
+
 
   if(inches < 2.5) {
     Serial.println("hand sanitized");
